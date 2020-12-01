@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-const TARGET: i32 = 2020;
+const TARGET: usize = 2020;
 
 // PART 1 | NAIVE SOLUTION
 // Option 1: O(n^2)
@@ -12,28 +12,31 @@ const TARGET: i32 = 2020;
 //     }
 // }
 #[allow(dead_code)]
-pub fn naive(numbers: &Vec<i32>) -> i32 {
-    for e1 in numbers {
-        for e2 in numbers {
+pub fn naive(numbers: &Vec<usize>) -> usize {
+    for i in 0..numbers.len() {
+        let e1 = numbers[i];
+        for j in i..numbers.len() {
+            let e2 = numbers[j];
             if e1 + e2 == TARGET {
                return e1 * e2;
             }
         }
     }
-    return -1;
+    return 0;
 }
 
 // PART 1 | BETTER SOLUTION
 // Option 2: O(n)
 // Use a HashSet to keep track of the complements.
-pub fn better(numbers: &Vec<i32>) -> i32 {
-    let mut complements: HashSet<i32> = HashSet::new();
-    for e in numbers {
+pub fn better(numbers: &Vec<usize>) -> usize {
+    let mut complements: HashSet<usize> = HashSet::new();
+    for i in 0..numbers.len() {
+        let e = numbers[i];
         let complement = TARGET - e;
         if complements.contains(&complement) {
-            return e * complement;
+            return numbers[e] * complement;
         }
-        complements.insert(*e);
+        complements.insert(e);
     }
-    return -1;
+    return 0;
 }

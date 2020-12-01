@@ -6,7 +6,7 @@ fn main() {
     let input_raw = include_str!("./input");
 
     // 2. Split into numbers.
-    let numbers: Vec<i32> = input_raw
+    let numbers: Vec<usize> = input_raw
         .split_whitespace()
         .map(|s| s.parse().expect("parse error"))
         .collect();
