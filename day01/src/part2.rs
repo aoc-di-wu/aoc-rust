@@ -27,7 +27,7 @@ pub fn naive(numbers: &Vec<usize>) -> usize {
             }
         }
     }
-    return 0;
+    panic!("No solution found.");
 }
 
 // PART 2 | BETTER SOLUTION
@@ -47,5 +47,5 @@ pub fn better(numbers: &Vec<usize>) -> usize {
             complements.insert(e2);
         }
     }
-    return 0;
+    panic!("No solution found.");
 }
