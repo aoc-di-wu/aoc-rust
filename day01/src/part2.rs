@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::HashSet;
 
 const TARGET: i32 = 2020;
 
@@ -29,17 +29,17 @@ pub fn naive(numbers: &Vec<i32>) -> i32 {
 
 // PART 2 | BETTER SOLUTION
 // Option 2: O(n^2)
-// Use a HashMap to keep track of the complements.
+// Use a HashSet to keep track of the complements.
 pub fn better(numbers: &Vec<i32>) -> i32 {
     for e1 in numbers {
         let new_target = TARGET - e1;
-        let mut complements: HashMap<i32,i32> = HashMap::new();
+        let mut complements: HashSet<i32> = HashSet::new();
         for e2 in numbers {
             let complement = new_target - e2;
-            if complements.contains_key(&complement) {
+            if complements.contains(&complement) {
                 return complement * e1 * e2;
             }
-            complements.insert(*e2, complement);
+            complements.insert(*e2);
         }
     }
     return -1;
