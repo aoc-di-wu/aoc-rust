@@ -17,9 +17,9 @@ const TARGET: usize = 2020;
 pub fn naive(numbers: &Vec<usize>) -> usize {
     for i in 0..numbers.len() {
         let e1 = numbers[i];
-        for j in i..numbers.len() {
+        for j in i+1..numbers.len() {
             let e2 = numbers[j];
-            for k in j..numbers.len() {
+            for k in j+1..numbers.len() {
                 let e3 = numbers[k];
                 if e1 + e2 + e3 == 2020 {
                     return e1 * e2 * e3;
@@ -38,9 +38,11 @@ pub fn better(numbers: &Vec<usize>) -> usize {
         let e1 = numbers[i];
         let new_target = TARGET - e1;
         let mut complements: HashSet<usize> = HashSet::new();
-        for j in i..numbers.len() {
+        for j in i+1..numbers.len() {
             let e2 = numbers[j];
-            let complement = new_target - e2;
+            // If you don't use wrapping you get:
+            // 'attempt to subtract with overflow'
+            let complement = new_target.wrapping_sub(e2);
             if complements.contains(&complement) {
                 return complement * e1 * e2;
             }

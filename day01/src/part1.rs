@@ -15,7 +15,7 @@ const TARGET: usize = 2020;
 pub fn naive(numbers: &Vec<usize>) -> usize {
     for i in 0..numbers.len() {
         let e1 = numbers[i];
-        for j in i..numbers.len() {
+        for j in i+1..numbers.len() {
             let e2 = numbers[j];
             if e1 + e2 == TARGET {
                return e1 * e2;
@@ -34,7 +34,7 @@ pub fn better(numbers: &Vec<usize>) -> usize {
         let e = numbers[i];
         let complement = TARGET - e;
         if complements.contains(&complement) {
-            return numbers[e] * complement;
+            return e * complement;
         }
         complements.insert(e);
     }
