@@ -39,9 +39,9 @@ fn part2(input: &str) -> usize {
                 .chars()
                 .collect();
 
-            // If the first character is the same as the character, check if the
-            // other second does not match. Otherwise, the second character must
-            // be the same.
+            // If the first character matches as the character, check if the
+            // second character does not match. Otherwise, the second character
+            // must be the same.
             if characters[fst - 1] == character {
                 return characters[snd - 1] != character;
             }
