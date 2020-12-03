@@ -12,12 +12,10 @@ fn main() {
         .collect();
 
     let start = Instant::now();
-    // part1::naive(&numbers);
     println!("Solution for PART 1: {}", part1(&grid));
     println!("Finished after {:?}", start.elapsed());
 
     let start = Instant::now();
-    // part1::naive(&numbers);
     println!("Solution for PART 2: {}", part2(&grid));
     println!("Finished after {:?}", start.elapsed());
 }
